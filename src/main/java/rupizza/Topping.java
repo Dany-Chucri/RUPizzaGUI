@@ -10,7 +10,9 @@ public enum Topping {
     BEEF("Beef"),
     SHRIMP("Shrimp"),
     SQUID("Squid"),
-    CRAB_MEATS("Crab Meats");
+    CRAB_MEATS("Crab Meats"),
+    CHICKEN("Chicken"),
+    PINEAPPLE("Pineapple");
 
     private final String displayName;
 
