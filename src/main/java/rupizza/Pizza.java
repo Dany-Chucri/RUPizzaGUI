@@ -24,19 +24,63 @@ public abstract class Pizza {
 
     protected static final double PRICE_FOR_LARGE= 4.00;
 
-    public Pizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
+    public Pizza() {
         this.toppings = new ArrayList<>();
-        this.size = size;
-        this.sauce = sauce;
-        this.extraSauce = extraSauce;
-        this.extraCheese = extraCheese;
+        this.size = Size.SMALL;
+        this.sauce = Sauce.TOMATO;
+        this.extraSauce = false;
+        this.extraCheese = false;
     }
     public abstract double price();
+
+    public ArrayList<Topping> getToppings() {
+        return this.toppings;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public Sauce getSauce() {
+        return sauce;
+    }
+
+    public boolean getExtraSauce() {
+        return extraSauce;
+    }
+
+    public boolean getExtraCheese() {
+        return extraCheese;
+    }
+
+    public void addTopping(String topping) {
+
+    }
+
+    public void removeTopping(String topping) {
+
+    }
+
+    public void setSize(String size) {
+
+    }
+
+    public void setSauce(String sauce) {
+
+    }
+
+    public void setExtraSauce(Boolean extra) {
+        extraSauce = extra;
+    }
+
+    public void setExtraCheese(Boolean extra) {
+        extraCheese = extra;
+    }
 }
 
 class DeluxePizza extends Pizza{
-    public DeluxePizza (Size size , Sauce sauce, boolean extraSauce, boolean extraCheese){
-        super(size,sauce,extraSauce,extraCheese);
+    public DeluxePizza (){
+        super();
         toppings.add(Topping.SAUSAGE);
         toppings.add(Topping.PEPPERONI);
         toppings.add(Topping.GREEN_PEPPER);
@@ -53,12 +97,12 @@ class DeluxePizza extends Pizza{
             base+=PRICE_FOR_MEDIUM;
         if(this.size==Size.LARGE)
             base+=PRICE_FOR_LARGE;
-        return base * SALES_TAX;
+        return base;
     }
 }
 class SupremePizza extends Pizza {
-    public SupremePizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
-        super(size, sauce, extraSauce, extraCheese);
+    public SupremePizza() {
+        super();
         toppings.add(Topping.SAUSAGE);
         toppings.add(Topping.PEPPERONI);
         toppings.add(Topping.HAM);
@@ -78,12 +122,12 @@ class SupremePizza extends Pizza {
             base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
             base += PRICE_FOR_LARGE;
-        return base * SALES_TAX;
+        return base;
     }
 }
 class MeatzzaPizza extends Pizza {
-    public MeatzzaPizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
-        super(size, sauce, extraSauce, extraCheese);
+    public MeatzzaPizza() {
+        super();
         toppings.add(Topping.SAUSAGE);
         toppings.add(Topping.PEPPERONI);
         toppings.add(Topping.BEEF);
@@ -100,12 +144,13 @@ class MeatzzaPizza extends Pizza {
             base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
             base += PRICE_FOR_LARGE;
-        return base * SALES_TAX;
+        return base;
     }
 }
 class SeafoodPizza extends Pizza {
-    public SeafoodPizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
-        super(size, sauce, extraSauce, extraCheese);
+    public SeafoodPizza() {
+        super();
+        sauce = Sauce.ALFREDO;
         toppings.add(Topping.SHRIMP);
         toppings.add(Topping.SQUID);
         toppings.add(Topping.CRAB_MEATS);
@@ -120,12 +165,12 @@ class SeafoodPizza extends Pizza {
             base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
             base += PRICE_FOR_LARGE;
-        return base * SALES_TAX;
+        return base;
     }
 }
 class PepperoniPizza extends Pizza {
-    public PepperoniPizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
-        super(size, sauce, extraSauce, extraCheese);
+    public PepperoniPizza() {
+        super();
         toppings.add(Topping.PEPPERONI);
     }
     public double price() {
@@ -138,13 +183,12 @@ class PepperoniPizza extends Pizza {
             base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
             base += PRICE_FOR_LARGE;
-        return base * SALES_TAX;
+        return base;
     }
 }
 class BuildYourOwnPizza extends Pizza {
-    public BuildYourOwnPizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
-        super(size, sauce, extraSauce, extraCheese);
-        this.toppings = new ArrayList<>(toppings); // ??
+    public BuildYourOwnPizza() {
+        super();
     }
     public double price() {
         double base = PRICE_BUILD_YOUR_OWN_PIZZA;
@@ -156,6 +200,6 @@ class BuildYourOwnPizza extends Pizza {
             base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
             base += PRICE_FOR_LARGE;
-        return base * SALES_TAX;
+        return base;
     }
 }

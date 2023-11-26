@@ -15,7 +15,7 @@ public class PizzaMaker {
             case "buildyourown":
                 return new BuildYourOwnPizza();
             default:
-                throw new IllegalArgumentException("Invalid Pizza Type:" +pizzaType);
+                throw new IllegalArgumentException("Invalid Pizza Type:" + pizzaType);
         }
     }
 }
