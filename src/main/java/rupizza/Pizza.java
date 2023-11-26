@@ -45,11 +45,11 @@ public abstract class Pizza {
         return sauce;
     }
 
-    public boolean getExtraSauce() {
+    public boolean isExtraSauce() {
         return extraSauce;
     }
 
-    public boolean getExtraCheese() {
+    public boolean isExtraCheese() {
         return extraCheese;
     }
 
