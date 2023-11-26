@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="580.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="rupizza.ControllerCustomPizzas">
+    <ImageView fitHeight="185.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="30.0"
+               AnchorPane.topAnchor="30.0">
+        <Image url="@custompizza.png"/>
+    </ImageView>
+    <ComboBox fx:id="sizeChooser" layoutX="299.0" layoutY="60.0" prefHeight="25.0" prefWidth="171.0"
+              promptText="Select Size">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Deluxe"/>
+                <String fx:value="Supreme"/>
+                <String fx:value="Meatzza"/>
+                <String fx:value="Seafood"/>
+                <String fx:value="Pepperoni"/>
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <ListView fx:id="additionalToppings" layoutX="30.0" layoutY="290.0" prefHeight="163.0" prefWidth="171.0">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value=""/>
+                <String fx:value=""/>
+                <String fx:value=""/>
+                <String fx:value=""/>
+                <String fx:value=""/>
+                <String fx:value=""/>
+                <String fx:value=""/>
+            </FXCollections>
+        </items>
+    </ListView>
+    <Label layoutX="30.0" layoutY="259.0" prefHeight="27.0" prefWidth="135.0" text="Additional Toppings">
+        <font>
+            <Font name="System Bold" size="14.0"/>
+        </font>
+    </Label>
+    <Label layoutX="30.0" layoutY="511.0" prefHeight="20.0" prefWidth="46.0" text="Price $">
+        <font>
+            <Font size="14.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="totalPrice" editable="false" layoutX="76.0" layoutY="509.0" prefHeight="25.0" prefWidth="200.0"/>
+    <Button fx:id="addToOrder" layoutX="306.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="171.0" text="Add to Order" AnchorPane.rightAnchor="30.0"/>
+    <RadioButton fx:id="tomatoSauce" layoutX="299.0" layoutY="98.0" mnemonicParsing="false" selected="true"
+                 text="tomato sauce">
+        <toggleGroup>
+        <ToggleGroup fx:id="sauceType"/>
+        </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="alfredoSauce" layoutX="299.0" layoutY="125.0" mnemonicParsing="false" text="alfredo sauce"
+                 toggleGroup="$sauceType"/>
+    <CheckBox fx:id="extraSauce" layoutX="299.0" layoutY="150.0" mnemonicParsing="false" text="extra sauce"/>
+    <CheckBox fx:id="extraCheese" layoutX="299.0" layoutY="175.0" mnemonicParsing="false" text="extra cheese"/>
+    <ListView fx:id="selectedToppings" layoutX="329.0" layoutY="290.0" prefHeight="163.0" prefWidth="171.0"
+              AnchorPane.rightAnchor="30.0">
+        <items>
+          <FXCollections fx:factory="observableArrayList">
+              <String fx:value=""/>
+              <String fx:value=""/>
+              <String fx:value=""/>
+              <String fx:value=""/>
+              <String fx:value=""/>
+              <String fx:value=""/>
+              <String fx:value=""/>
+          </FXCollections>
+        </items>
+    </ListView>
+    <Label layoutX="299.0" layoutY="259.0" prefHeight="27.0" prefWidth="135.0" text="Selected Toppings"
+           AnchorPane.rightAnchor="66.0">
+        <font>
+          <Font name="System Bold" size="14.0"/>
+        </font>
+    </Label>
+    <Button fx:id="addTopping" layoutX="212.0" layoutY="335.0" mnemonicParsing="false" prefHeight="25.0"
+            prefWidth="76.0" text="add &gt;&gt;"/>
+    <Button fx:id="removeTopping" layoutX="212.0" layoutY="379.0" mnemonicParsing="false" text="&lt;&lt; remove"/>
+</AnchorPane>
