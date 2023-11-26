@@ -18,6 +18,11 @@ public abstract class Pizza {
     protected static final double PRICE_SEAFOOD=17.99;
     protected static final double PRICE_PEPPERONI=10.99;
     protected static final double PRICE_BUILD_YOUR_OWN_PIZZA=8.99;
+    protected static final double EXTRA_SAUCE_FEE = 1.00;
+    protected static final double EXTRA_CHEESE_FEE = 1.00;
+    protected static final double PRICE_FOR_MEDIUM= 2.00;
+
+    protected static final double PRICE_FOR_LARGE= 4.00;
 
     public Pizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
         this.toppings = new ArrayList<>();
@@ -41,13 +46,13 @@ class DeluxePizza extends Pizza{
     public double price(){
         double base=PRICE_DELUXE;
         if(this.extraSauce)
-            base+=1.00;
+            base+=EXTRA_SAUCE_FEE;
         if(this.extraCheese)
-            base+=1.00;
+            base+=EXTRA_CHEESE_FEE;
         if(this.size==Size.MEDIUM)
-            base+=2;
+            base+=PRICE_FOR_MEDIUM;
         if(this.size==Size.LARGE)
-            base+=4;
+            base+=PRICE_FOR_LARGE;
         return base * SALES_TAX;
     }
 }
@@ -66,13 +71,13 @@ class SupremePizza extends Pizza {
     public double price() {
         double base = PRICE_SUPREME;
         if (this.extraSauce)
-            base += 1.00;
+            base += EXTRA_SAUCE_FEE;
         if (this.extraCheese)
-            base += 1.00;
+            base += EXTRA_CHEESE_FEE;
         if (this.size == Size.MEDIUM)
-            base += 2;
+            base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
-            base += 4;
+            base += PRICE_FOR_LARGE;
         return base * SALES_TAX;
     }
 }
@@ -88,13 +93,13 @@ class MeatzzaPizza extends Pizza {
     public double price() {
         double base = PRICE_MEATZZA;
         if (this.extraSauce)
-            base += 1.00;
+            base += EXTRA_SAUCE_FEE;
         if (this.extraCheese)
-            base += 1.00;
+            base += EXTRA_CHEESE_FEE;
         if (this.size == Size.MEDIUM)
-            base += 2;
+            base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
-            base += 4;
+            base += PRICE_FOR_LARGE;
         return base * SALES_TAX;
     }
 }
@@ -108,13 +113,13 @@ class SeafoodPizza extends Pizza {
     public double price() {
         double base = PRICE_SEAFOOD;
         if (this.extraSauce)
-            base += 1.00;
+            base += EXTRA_SAUCE_FEE;
         if (this.extraCheese)
-            base += 1.00;
+            base += EXTRA_CHEESE_FEE;
         if (this.size == Size.MEDIUM)
-            base += 2;
+            base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
-            base += 4;
+            base += PRICE_FOR_LARGE;
         return base * SALES_TAX;
     }
 }
@@ -126,13 +131,13 @@ class PepperoniPizza extends Pizza {
     public double price() {
         double base = PRICE_PEPPERONI;
         if (this.extraSauce)
-            base += 1.00;
+            base += EXTRA_SAUCE_FEE;
         if (this.extraCheese)
-            base += 1.00;
+            base += EXTRA_CHEESE_FEE;
         if (this.size == Size.MEDIUM)
-            base += 2;
+            base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
-            base += 4;
+            base += PRICE_FOR_LARGE;
         return base * SALES_TAX;
     }
 }
@@ -144,13 +149,13 @@ class BuildYourOwnPizza extends Pizza {
     public double price() {
         double base = PRICE_BUILD_YOUR_OWN_PIZZA;
         if (this.extraSauce)
-            base += 1.00;
+            base += EXTRA_SAUCE_FEE;
         if (this.extraCheese)
-            base += 1.00;
+            base += EXTRA_CHEESE_FEE;
         if (this.size == Size.MEDIUM)
-            base += 2;
+            base += PRICE_FOR_MEDIUM;
         if (this.size == Size.LARGE)
-            base += 4;
+            base += PRICE_FOR_LARGE;
         return base * SALES_TAX;
     }
 }
