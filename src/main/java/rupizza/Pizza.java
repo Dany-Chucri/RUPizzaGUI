@@ -2,13 +2,11 @@ package rupizza;
 import java.util.ArrayList;
 
 public abstract class Pizza {
-    protected ArrayList<Topping> toppings; //Topping is a enum class
-
-    protected Size size; //Size is a enum class
-    protected Sauce sauce; //Sauce is a enum class
+    protected ArrayList<Topping> toppings; //Topping is an enum class
+    protected Size size; //Size is an enum class
+    protected Sauce sauce; //Sauce is an enum class
     protected boolean extraSauce;
     protected boolean extraCheese;
-
     protected static final double SALES_TAX = 1.06625;
     protected static final double PRICE_DELUXE=14.99;
 
@@ -32,9 +30,33 @@ public abstract class Pizza {
         this.extraCheese = extraCheese;
     }
     public abstract double price();
-}
 
+    public ArrayList<Topping> getToppings() {
+        return toppings;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+    public Sauce getSauce() {
+        return sauce;
+    }
+    public boolean isExtraSauce() {
+        return extraSauce;
+    }
+    public boolean isExtraCheese() {
+        return extraCheese;
+    }
+}
 class DeluxePizza extends Pizza{
+    public DeluxePizza(){
+        super(Size.SMALL,Sauce.TOMATO,false,false);
+        toppings.add(Topping.SAUSAGE);
+        toppings.add(Topping.PEPPERONI);
+        toppings.add(Topping.GREEN_PEPPER);
+        toppings.add(Topping.ONION);
+        toppings.add(Topping.MUSHROOM);
+    }
     public DeluxePizza (Size size , Sauce sauce, boolean extraSauce, boolean extraCheese){
         super(size,sauce,extraSauce,extraCheese);
         toppings.add(Topping.SAUSAGE);
@@ -57,6 +79,16 @@ class DeluxePizza extends Pizza{
     }
 }
 class SupremePizza extends Pizza {
+    public SupremePizza(){
+        super(Size.SMALL,Sauce.TOMATO,false,false);
+        toppings.add(Topping.SAUSAGE);
+        toppings.add(Topping.PEPPERONI);
+        toppings.add(Topping.HAM);
+        toppings.add(Topping.GREEN_PEPPER);
+        toppings.add(Topping.ONION);
+        toppings.add(Topping.BLACK_OLIVE);
+        toppings.add(Topping.MUSHROOM);
+    }
     public SupremePizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
         super(size, sauce, extraSauce, extraCheese);
         toppings.add(Topping.SAUSAGE);
@@ -82,6 +114,13 @@ class SupremePizza extends Pizza {
     }
 }
 class MeatzzaPizza extends Pizza {
+    public MeatzzaPizza(){
+        super(Size.SMALL,Sauce.TOMATO,false,false);
+        toppings.add(Topping.SAUSAGE);
+        toppings.add(Topping.PEPPERONI);
+        toppings.add(Topping.BEEF);
+        toppings.add(Topping.HAM);
+    }
     public MeatzzaPizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
         super(size, sauce, extraSauce, extraCheese);
         toppings.add(Topping.SAUSAGE);
@@ -89,7 +128,6 @@ class MeatzzaPizza extends Pizza {
         toppings.add(Topping.BEEF);
         toppings.add(Topping.HAM);
     }
-
     public double price() {
         double base = PRICE_MEATZZA;
         if (this.extraSauce)
@@ -104,6 +142,12 @@ class MeatzzaPizza extends Pizza {
     }
 }
 class SeafoodPizza extends Pizza {
+    public SeafoodPizza(){
+        super(Size.SMALL,Sauce.TOMATO,false,false);
+        toppings.add(Topping.SHRIMP);
+        toppings.add(Topping.SQUID);
+        toppings.add(Topping.CRAB_MEATS);
+    }
     public SeafoodPizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
         super(size, sauce, extraSauce, extraCheese);
         toppings.add(Topping.SHRIMP);
@@ -124,6 +168,10 @@ class SeafoodPizza extends Pizza {
     }
 }
 class PepperoniPizza extends Pizza {
+    public PepperoniPizza(){
+        super(Size.SMALL,Sauce.TOMATO,false,false);
+        toppings.add(Topping.PEPPERONI);
+    }
     public PepperoniPizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
         super(size, sauce, extraSauce, extraCheese);
         toppings.add(Topping.PEPPERONI);
@@ -142,6 +190,10 @@ class PepperoniPizza extends Pizza {
     }
 }
 class BuildYourOwnPizza extends Pizza {
+    public BuildYourOwnPizza(){
+        super(Size.SMALL,Sauce.TOMATO,false,false);
+        this.toppings = new ArrayList<>(toppings);
+    }
     public BuildYourOwnPizza(Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
         super(size, sauce, extraSauce, extraCheese);
         this.toppings = new ArrayList<>(toppings); // ??
