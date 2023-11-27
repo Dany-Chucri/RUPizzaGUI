@@ -13,6 +13,7 @@ public class ControllerMainMenu {
 
     @FXML
     private Button specialtyPizzas, customPizzas, shoppingCart, ordersList;
+    private ControllerStoreOrders storeOrdersController;
 
     @FXML
     protected void openSpecialties() {
@@ -100,5 +101,12 @@ public class ControllerMainMenu {
             alert.setContentText("Couldn't load StoreOrders.fxml.");
             alert.showAndWait();
         }
+    }
+    public ControllerStoreOrders getStoreOrdersController() {
+        return storeOrdersController;
+    }
+
+    public void setStoreOrdersController(ControllerStoreOrders storeOrdersController) {
+        this.storeOrdersController = storeOrdersController;
     }
 }

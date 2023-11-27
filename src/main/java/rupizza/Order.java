@@ -5,15 +5,21 @@ import java.util.List;
 
 public class Order {
     private static int nextOrderNum=1;
-    private int OrderNumber;
+    private int orderNumber;
     private List<Pizza>pizzas;
 
     public Order(){
-        this.OrderNumber=nextOrderNum+=1;
+        this.orderNumber=nextOrderNum+=1;
         this.pizzas=new ArrayList<>();
     }
+
+    public Order(int orderNumber, List<Pizza> pizzas) {
+        this.orderNumber=nextOrderNum+=1;
+        this.pizzas = pizzas;
+    }
+
     public int getOrderNumber(){
-        return this.OrderNumber;
+        return this.orderNumber;
     }
     public List<Pizza> getPizzas(){
         return new ArrayList<>(pizzas);
