@@ -9,8 +9,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ControllerMainMenu {
+    protected StoreOrders storeOrders;
+
     @FXML
-    private Button specialtyPizzas, customPizzas, shoppingCart, storeOrders;
+    private Button specialtyPizzas, customPizzas, shoppingCart, ordersList;
 
     @FXML
     protected void openSpecialties() {

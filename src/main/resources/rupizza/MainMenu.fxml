@@ -59,7 +59,7 @@
                   <Insets left="70.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="storeOrders" contentDisplay="TOP" mnemonicParsing="false" onAction="#openOrders" prefHeight="125.0" prefWidth="182.0" text="Store Orders" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="ordersList" contentDisplay="TOP" mnemonicParsing="false" onAction="#openOrders" prefHeight="125.0" prefWidth="182.0" text="Store Orders" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="181.0" pickOnBounds="true" preserveRatio="true">
                      <image>

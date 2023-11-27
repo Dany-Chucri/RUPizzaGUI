@@ -8,9 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.text.NumberFormat;
+import java.util.List;
 
 public class ControllerSpecialtyPizzas {
-
     private ControllerMainMenu mainController;
     private ObservableList<String> specialtyList;
     private ObservableList<String> toppingsList;
@@ -44,6 +44,8 @@ public class ControllerSpecialtyPizzas {
         toppingsList = FXCollections.observableArrayList("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
         specialtyChooser.setItems(specialtyList);
         toppings.setItems(toppingsList);
+        totalPrice.appendText("$16.99");
+        sauce.appendText("Tomato");
     }
 
     //Get the reference to the MainController object
@@ -70,15 +72,27 @@ public class ControllerSpecialtyPizzas {
         }
     }
 
-    @FXML
-    void selectSpecialty() {
+    private Pizza buildSpecialty() {
         String selected = specialtyChooser.getSelectionModel().getSelectedItem();
         setSpecialtyImage(selected);
         Pizza pizza = PizzaMaker.createPizza(selected);
+        RadioButton selectedRadioButton = (RadioButton) specialtySize.getSelectedToggle();
+        pizza.setSize(selectedRadioButton.getText());
+        pizza.setExtraSauce(extraSauce.isSelected());
+        pizza.setExtraCheese(extraCheese.isSelected());
+
         totalPrice.clear();
         sauce.clear();
-        //NumberFormat.getCurrencyInstance().format(pizza.price())
-        totalPrice.appendText("" + pizza.price());
-        sauce.appendText(pizza.sauce.getDisplayName());
+        toppings.setItems(FXCollections.observableList((List) pizza.toppings));
+        NumberFormat.getCurrencyInstance().format(pizza.price());
+        totalPrice.appendText(NumberFormat.getCurrencyInstance().format(pizza.price()));
+        sauce.appendText(pizza.sauce.toString());
+
+        return pizza;
+    }
+
+    @FXML
+    void selectSpecialty() {
+        buildSpecialty();
     }
 }

@@ -1,8 +1,8 @@
 package rupizza;
 public enum Size {
-    SMALL("Small"),
-    MEDIUM("Medium"),
-    LARGE("Large");
+    SMALL("small"),
+    MEDIUM("medium"),
+    LARGE("large");
 
     private final String displayName;
 
@@ -10,7 +10,8 @@ public enum Size {
         this.displayName = displayName;
     }
 
-    public String getDisplayName() {
+    @Override
+    public String toString() {
         return displayName;
     }
 }
