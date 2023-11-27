@@ -8,7 +8,11 @@ import javafx.scene.image.ImageView;
 
 import java.text.NumberFormat;
 import java.util.List;
-
+/**
+ * The ControllerCustomPizzas class controls the user interface for creating custom pizzas.
+ * It allows users to select pizza size, sauce type, toppings, and view the total price.
+ * @author Dany Chucri, Madhur Nutulapati
+ */
 public class ControllerCustomPizzas {
 
     private ControllerMainMenu mainController;
@@ -39,6 +43,9 @@ public class ControllerCustomPizzas {
     @FXML
     private Button addTopping, removeTopping, addToOrder;
 
+    /**
+     * Initializes the controller by setting up the lists and creating a new build-your-own pizza.
+     */
     public void initialize() {
         sizeList = FXCollections.observableArrayList("Small", "Medium", "Large");
         additionalToppingsList = FXCollections.observableArrayList("Sausage", "Chicken", "Beef", "Ham", "Pepperoni", "Shrimp", "Squid", "Crab Meats", "Mushroom", "Green Pepper", "Pineapple", "Black Olive", "Onion");
@@ -49,11 +56,19 @@ public class ControllerCustomPizzas {
         pizza = PizzaMaker.createPizza("buildyourown");
     }
 
-    //Get the reference to the MainController object
+    /**
+     * Sets the reference to the main controller.
+     *
+     * @param controller The main controller to be referenced.
+     */
     public void setMainController (ControllerMainMenu controller){
         mainController = controller;
     }
 
+    /**
+     * Handles the selection of pizza size.
+     * Enables/disables relevant controls and updates the pizza size.
+     */
     @FXML
     void selectSize() {
         tomatoSauce.setDisable(false);
@@ -74,6 +89,10 @@ public class ControllerCustomPizzas {
         removeTopping.setDisable(false);
     }
 
+    /**
+     * Handles the selection of tomato sauce.
+     * Updates the pizza sauce type and total price.
+     */
     @FXML
     void selectTomato() {
         pizza.setSauce("tomato");
@@ -82,6 +101,10 @@ public class ControllerCustomPizzas {
         totalPrice.appendText(NumberFormat.getCurrencyInstance().format(pizza.price()));
     }
 
+    /**
+     * Handles the selection of alfredo sauce.
+     * Updates the pizza sauce type and total price.
+     */
     @FXML
     void selectAlfredo() {
         pizza.setSauce("alfredo");
@@ -90,6 +113,10 @@ public class ControllerCustomPizzas {
         totalPrice.appendText(NumberFormat.getCurrencyInstance().format(pizza.price()));
     }
 
+    /**
+     * Handles the selection of extra sauce/cheese.
+     * Updates the pizza's extra sauce/cheese status and total price.
+     */
     @FXML
     void setExtra() {
         pizza.setExtraSauce(extraSauce.isSelected());
@@ -99,6 +126,10 @@ public class ControllerCustomPizzas {
         totalPrice.appendText(NumberFormat.getCurrencyInstance().format(pizza.price()));
     }
 
+    /**
+     * Handles the selection of additional toppings.
+     * Adds the selected topping to the pizza and updates the lists and total price.
+     */
     @FXML
     void selectTopping() {
         if (additionalToppings.getItems().isEmpty() || additionalToppings.getItems().size() == Pizza.MAX_TOPPINGS-1) return;
@@ -114,6 +145,10 @@ public class ControllerCustomPizzas {
         totalPrice.appendText(NumberFormat.getCurrencyInstance().format(pizza.price()));
     }
 
+    /**
+     * Handles the deselection of selected toppings.
+     * Removes the selected topping from the pizza and updates the lists and total price.
+     */
     @FXML
     void deselectTopping() {
         if (pizza.toppings.isEmpty()) return;

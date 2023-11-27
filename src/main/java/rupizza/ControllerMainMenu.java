@@ -8,6 +8,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * The ControllerMainMenu class controls the main menu of the RUPizza application.
+ * @author Dany Chucri, Madhur Nutulapati
+ */
 public class ControllerMainMenu {
     protected StoreOrders storeOrders;
 
@@ -15,6 +19,9 @@ public class ControllerMainMenu {
     private Button specialtyPizzas, customPizzas, shoppingCart, ordersList;
     private ControllerStoreOrders storeOrdersController;
 
+    /**
+     * Opens the window for Specialty Pizzas.
+     */
     @FXML
     protected void openSpecialties() {
         Stage specialties = new Stage();
@@ -37,6 +44,9 @@ public class ControllerMainMenu {
         }
     }
 
+    /**
+     * Opens the window for Custom Pizzas.
+     */
     @FXML
     protected void openCustoms() {
         Stage pizzaBuilder = new Stage();
@@ -59,6 +69,9 @@ public class ControllerMainMenu {
         }
     }
 
+    /**
+     * Opens the shopping cart window for checkout.
+     */
     @FXML
     protected void openCart() {
         Stage shoppingCart = new Stage();
@@ -81,6 +94,9 @@ public class ControllerMainMenu {
         }
     }
 
+    /**
+     * Opens the window for viewing store orders.
+     */
     @FXML
     protected void openOrders() {
         Stage storeOrders = new Stage();
@@ -102,10 +118,21 @@ public class ControllerMainMenu {
             alert.showAndWait();
         }
     }
+
+    /**
+     * Retrieves the store orders controller.
+     *
+     * @return The ControllerStoreOrders instance.
+     */
     public ControllerStoreOrders getStoreOrdersController() {
         return storeOrdersController;
     }
 
+    /**
+     * Sets the store orders controller.
+     *
+     * @param storeOrdersController The ControllerStoreOrders instance to set.
+     */
     public void setStoreOrdersController(ControllerStoreOrders storeOrdersController) {
         this.storeOrdersController = storeOrdersController;
     }

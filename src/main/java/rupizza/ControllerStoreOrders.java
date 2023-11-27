@@ -30,7 +30,7 @@ public class ControllerStoreOrders {
     public void initialize() {
         pizzaListArr = FXCollections.observableArrayList("Here would be the toString() version of a given pizza object, but for now we will use this sample text space to fill up the text area as a part of testing.");
         orderNumbers = FXCollections.observableArrayList("1", "2", "3");
-        
+
         pizzaList.setItems(pizzaListArr);
         orderNumber.setItems(orderNumbers);
         storeOrders = new StoreOrders();

@@ -1,4 +1,9 @@
 package rupizza;
+
+/**
+ * The Topping enum represents different toppings for pizza.
+ * @author Dany Chucri, Madhur Nutulapati
+ */
 public enum Topping {
     SAUSAGE("Sausage"),
     PEPPERONI("Pepperoni"),
@@ -16,10 +21,20 @@ public enum Topping {
 
     private final String displayName;
 
+    /**
+     * Constructs a Topping enum with the specified display name.
+     *
+     * @param displayName The display name of the topping.
+     */
     Topping(String displayName) {
         this.displayName = displayName;
     }
 
+    /**
+     * Returns the display name of the topping.
+     *
+     * @return The display name of the topping.
+     */
     @Override
     public String toString() {
         return displayName;

@@ -1,6 +1,10 @@
 package rupizza;
 import java.util.ArrayList;
 
+/**
+ * Abstract class representing a pizza.
+ * @author Dany Chucri, Madhur Nutulapati
+ */
 public abstract class Pizza {
     protected ArrayList<Topping> toppings; //Topping is an enum class
 
@@ -27,6 +31,9 @@ public abstract class Pizza {
     protected static final double PRICE_FOR_MEDIUM= 2.00;
     protected static final double PRICE_FOR_LARGE= 4.00;
 
+    /**
+     * Default constructor for a Pizza object.
+     */
     public Pizza() {
         this.toppings = new ArrayList<>();
         this.size = Size.SMALL;
@@ -36,28 +43,63 @@ public abstract class Pizza {
         this.pizzaType = "";
     }
 
+    /**
+     * Abstract method to calculate the price of the pizza.
+     *
+     * @return The price of the pizza.
+     */
     public abstract double price();
 
+    /**
+     * Get the list of toppings on the pizza.
+     *
+     * @return ArrayList of Topping enum representing toppings on the pizza.
+     */
     public ArrayList<Topping> getToppings() {
         return this.toppings;
     }
 
+    /**
+     * Get the size of the pizza.
+     *
+     * @return Size enum representing the size of the pizza.
+     */
     public Size getSize() {
         return size;
     }
 
+    /**
+     * Get the sauce on the pizza.
+     *
+     * @return Sauce enum representing the sauce on the pizza.
+     */
     public Sauce getSauce() {
         return sauce;
     }
 
+    /**
+     * Check if extra sauce is added to the pizza.
+     *
+     * @return true if extra sauce is added, false otherwise.
+     */
     public boolean isExtraSauce() {
         return extraSauce;
     }
 
+    /**
+     * Check if extra cheese is added to the pizza.
+     *
+     * @return true if extra cheese is added, false otherwise.
+     */
     public boolean isExtraCheese() {
         return extraCheese;
     }
 
+    /**
+     * Add a topping to the pizza.
+     *
+     * @param topping The topping to be added.
+     */
     public void addTopping(String topping) {
         if (topping.equals("Crab Meats")) topping = "Crab_Meats";
         if (topping.equals("Green Pepper")) topping = "Green_Pepper";
@@ -65,6 +107,11 @@ public abstract class Pizza {
         toppings.add(Topping.valueOf(topping.toUpperCase()));
     }
 
+    /**
+     * Remove a topping from the pizza.
+     *
+     * @param topping The topping to be removed.
+     */
     public void removeTopping(String topping) {
         if (topping.equals("Crab Meats")) topping = "Crab_Meats";
         if (topping.equals("Green Pepper")) topping = "Green_Pepper";
@@ -72,22 +119,47 @@ public abstract class Pizza {
         toppings.remove(Topping.valueOf(topping.toUpperCase()));
     }
 
+    /**
+     * Set the size of the pizza.
+     *
+     * @param size The size to be set.
+     */
     public void setSize(String size) {
         this.size = Size.valueOf(size.toUpperCase());
     }
 
+    /**
+     * Set the sauce of the pizza.
+     *
+     * @param sauce The sauce to be set.
+     */
     public void setSauce(String sauce) {
         this.sauce = Sauce.valueOf(sauce.toUpperCase());
     }
 
+    /**
+     * Set whether extra sauce is added to the pizza.
+     *
+     * @param extra True if extra sauce is added, false otherwise.
+     */
     public void setExtraSauce(Boolean extra) {
         extraSauce = extra;
     }
 
+    /**
+     * Set whether extra cheese is added to the pizza.
+     *
+     * @param extra True if extra cheese is added, false otherwise.
+     */
     public void setExtraCheese(Boolean extra) {
         extraCheese = extra;
     }
 
+    /**
+     * Generate a string representation of the pizza.
+     *
+     * @return String representation of the pizza.
+     */
     @Override
     public String toString() {
         String exSauce = "", exCheese = "";
@@ -98,7 +170,13 @@ public abstract class Pizza {
     }
 }
 
+/**
+ * DeluxePizza class represents a pizza with a predefined set of toppings.
+ */
 class DeluxePizza extends Pizza{
+    /**
+     * Default constructor for a DeluxePizza object.
+     */
     public DeluxePizza (){
         super();
         pizzaType = "Deluxe";
@@ -108,6 +186,12 @@ class DeluxePizza extends Pizza{
         toppings.add(Topping.ONION);
         toppings.add(Topping.MUSHROOM);
     }
+
+    /**
+     * Calculate the price of the DeluxePizza based on its size and additional options.
+     *
+     * @return The total price of the DeluxePizza.
+     */
     public double price(){
         double base=PRICE_DELUXE;
         if(this.extraSauce)
@@ -121,7 +205,15 @@ class DeluxePizza extends Pizza{
         return base;
     }
 }
+
+/**
+ * SupremePizza class represents a pizza with a variety of toppings.
+ */
 class SupremePizza extends Pizza {
+
+    /**
+     * Default constructor for a SupremePizza object.
+     */
     public SupremePizza() {
         super();
         pizzaType = "Supreme";
@@ -134,6 +226,11 @@ class SupremePizza extends Pizza {
         toppings.add(Topping.MUSHROOM);
     }
 
+    /**
+     * Calculate the price of the SupremePizza based on its size and additional options.
+     *
+     * @return The total price of the SupremePizza.
+     */
     public double price() {
         double base = PRICE_SUPREME;
         if (this.extraSauce)
@@ -147,7 +244,15 @@ class SupremePizza extends Pizza {
         return base;
     }
 }
+
+/**
+ * MeatzzaPizza class represents a pizza with meat toppings.
+ */
 class MeatzzaPizza extends Pizza {
+
+    /**
+     * Default constructor for a MeatzzaPizza object.
+     */
     public MeatzzaPizza() {
         super();
         pizzaType = "Meatzza";
@@ -157,6 +262,11 @@ class MeatzzaPizza extends Pizza {
         toppings.add(Topping.HAM);
     }
 
+    /**
+     * Calculate the price of the MeatzzaPizza based on its size and additional options.
+     *
+     * @return The total price of the MeatzzaPizza.
+     */
     public double price() {
         double base = PRICE_MEATZZA;
         if (this.extraSauce)
@@ -170,7 +280,15 @@ class MeatzzaPizza extends Pizza {
         return base;
     }
 }
+
+/**
+ * SeafoodPizza class represents a pizza with seafood toppings.
+ */
 class SeafoodPizza extends Pizza {
+
+    /**
+     * Default constructor for a SeafoodPizza object.
+     */
     public SeafoodPizza() {
         super();
         pizzaType = "Seafood";
@@ -179,6 +297,12 @@ class SeafoodPizza extends Pizza {
         toppings.add(Topping.SQUID);
         toppings.add(Topping.CRAB_MEATS);
     }
+
+    /**
+     * Calculate the price of the SeafoodPizza based on its size and additional options.
+     *
+     * @return The total price of the SeafoodPizza.
+     */
     public double price() {
         double base = PRICE_SEAFOOD;
         if (this.extraSauce)
@@ -192,12 +316,26 @@ class SeafoodPizza extends Pizza {
         return base;
     }
 }
+
+/**
+ * PepperoniPizza class represents a pizza with pepperoni toppings.
+ */
 class PepperoniPizza extends Pizza {
+
+    /**
+     * Default constructor for a PepperoniPizza object.
+     */
     public PepperoniPizza() {
         super();
         pizzaType = "Pepperoni  ";
         toppings.add(Topping.PEPPERONI);
     }
+
+    /**
+     * Calculate the price of the PepperoniPizza based on its size and additional options.
+     *
+     * @return The total price of the PepperoniPizza.
+     */
     public double price() {
         double base = PRICE_PEPPERONI;
         if (this.extraSauce)
@@ -211,11 +349,25 @@ class PepperoniPizza extends Pizza {
         return base;
     }
 }
+
+/**
+ * BuildYourOwnPizza class represents a customizable pizza where toppings can be added.
+ */
 class BuildYourOwnPizza extends Pizza {
+
+    /**
+     * Default constructor for a BuildYourOwnPizza object.
+     */
     public BuildYourOwnPizza() {
         super();
         pizzaType = "Build your own";
     }
+
+    /**
+     * Calculate the price of the BuildYourOwnPizza based on its size, toppings, and additional options.
+     *
+     * @return The total price of the BuildYourOwnPizza.
+     */
     public double price() {
         double base = PRICE_BUILD_YOUR_OWN_PIZZA;
         if (this.extraSauce)

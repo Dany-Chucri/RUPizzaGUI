@@ -10,6 +10,11 @@ import javafx.scene.image.ImageView;
 import java.text.NumberFormat;
 import java.util.List;
 
+/**
+ * The ControllerSpecialtyPizzas class controls the user interface for selecting and customizing specialty pizzas.
+ * It allows users to choose a specialty pizza, view its image, toppings, and customize its size, sauce, and extras.
+ * @author Dany Chucri, Madhur Nutulapati
+ */
 public class ControllerSpecialtyPizzas {
     private ControllerMainMenu mainController;
     private ObservableList<String> specialtyList;
@@ -39,6 +44,10 @@ public class ControllerSpecialtyPizzas {
     @FXML
     private Button addToOrder;
 
+    /**
+     * Initializes the controller by setting up the specialty and toppings lists.
+     * Sets the initial values for the total price and sauce.
+     */
     public void initialize() {
         specialtyList = FXCollections.observableArrayList("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         toppingsList = FXCollections.observableArrayList("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
@@ -48,11 +57,20 @@ public class ControllerSpecialtyPizzas {
         sauce.appendText("Tomato");
     }
 
-    //Get the reference to the MainController object
+    /**
+     * Sets the reference to the main controller.
+     *
+     * @param controller The main controller to be referenced.
+     */
     public void setMainController (ControllerMainMenu controller){
         mainController = controller;
     }
 
+    /**
+     * Sets the image of the selected specialty pizza.
+     *
+     * @param selected The name of the selected specialty pizza.
+     */
     private void setSpecialtyImage(String selected) {
         switch (selected) {
             case "Deluxe":
@@ -72,6 +90,11 @@ public class ControllerSpecialtyPizzas {
         }
     }
 
+    /**
+     * Builds a specialty pizza based on user selections and displays its details.
+     *
+     * @return The created specialty pizza.
+     */
     private Pizza buildSpecialty() {
         String selected = specialtyChooser.getSelectionModel().getSelectedItem();
         setSpecialtyImage(selected);
@@ -91,6 +114,10 @@ public class ControllerSpecialtyPizzas {
         return pizza;
     }
 
+    /**
+     * Handles the selection of a specialty pizza.
+     * Builds and displays the selected specialty pizza details.
+     */
     @FXML
     void selectSpecialty() {
         buildSpecialty();

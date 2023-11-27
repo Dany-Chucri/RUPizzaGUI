@@ -46,15 +46,14 @@ public class ControllerShoppingCart {
     }
     @FXML
     private void handlePlaceOrder() {
+
         if(!pizzaListArr.isEmpty()){
-            Order order = new Order(nextOrderNumber(), new ArrayList<>());
+            Order order = new Order();
 
             mainController.getStoreOrdersController().getStoreOrders().addOrder(order);
 
             storeOrders.addOrder(order);
-
-            //update order number //!!
-
+            //order num updatE?
 
             //"Order placed successfully!
 
@@ -74,7 +73,6 @@ public class ControllerShoppingCart {
         List<Pizza> pizzaListArr = getPizzasInOrder();
 
         for (Pizza pizza : pizzaListArr) {
-            // Assuming each pizza has a price() method
             subtotalVal += pizza.price();
         }
 

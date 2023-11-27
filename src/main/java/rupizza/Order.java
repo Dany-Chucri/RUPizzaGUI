@@ -3,20 +3,24 @@ package rupizza;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Order {
     private static int nextOrderNum=1;
     private int orderNumber;
-    private List<Pizza>pizzas;
+    private ObservableList<Pizza>pizzas;
 
     public Order(){
         this.orderNumber=nextOrderNum+=1;
-        this.pizzas=new ArrayList<>();
+        FXCollections.observableArrayList();
+//        this.pizzas=new ArrayList<>();
     }
 
-    public Order(int orderNumber, List<Pizza> pizzas) {
-        this.orderNumber=nextOrderNum+=1;
-        this.pizzas = pizzas;
-    }
+//    public Order(int orderNumber, List<Pizza> pizzas) {
+//        this.orderNumber=nextOrderNum+=1;
+//        this.pizzas = pizzas;
+//    }
 
     public int getOrderNumber(){
         return this.orderNumber;
