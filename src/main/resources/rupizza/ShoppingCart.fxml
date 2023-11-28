@@ -36,7 +36,7 @@
       </Label>
       <TextField fx:id="salesTax" editable="false" layoutX="282.0" layoutY="316.0" prefHeight="25.0" prefWidth="91.0" />
       <TextField fx:id="orderTotal" editable="false" layoutX="112.0" layoutY="348.0" prefHeight="25.0" prefWidth="249.0" />
-      <Button fx:id="removePizza" layoutX="453.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="207.0" text="Remove Pizza" />
-      <Button fx:id="placeOrder" layoutX="453.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="207.0" text="Place Order" />
+      <Button fx:id="removePizza" layoutX="453.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleRemovePizza" prefHeight="25.0" prefWidth="207.0" text="Remove Pizza" />
+      <Button fx:id="placeOrder" layoutX="453.0" layoutY="348.0" mnemonicParsing="false" onAction="#handlePlaceOrder" prefHeight="25.0" prefWidth="207.0" text="Place Order" />
    </children>
 </AnchorPane>

@@ -1,4 +1,5 @@
 package rupizza;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 /**
@@ -95,6 +96,10 @@ public abstract class Pizza {
         return extraCheese;
     }
 
+    public String getPizzaType() {
+        return pizzaType;
+    }
+
     /**
      * Add a topping to the pizza.
      *
@@ -155,6 +160,16 @@ public abstract class Pizza {
         extraCheese = extra;
     }
 
+    public void copyPizza(Pizza pizza) {
+        this.toppings = new ArrayList<>();
+        this.toppings.addAll(pizza.getToppings());
+        this.size = pizza.getSize();
+        this.sauce = pizza.getSauce();
+        this.extraSauce = pizza.isExtraSauce();
+        this.extraCheese = pizza.isExtraCheese();
+        this.pizzaType = pizza.getPizzaType();
+    }
+
     /**
      * Generate a string representation of the pizza.
      *
@@ -162,11 +177,12 @@ public abstract class Pizza {
      */
     @Override
     public String toString() {
-        String exSauce = "", exCheese = "";
+        String exSauce = "No Extra Sauce", exCheese = "No Extra Cheese";
         if (extraSauce) exSauce = "Extra Sauce";
         if (extraCheese) exCheese = "Extra cheese";
+
         return "[" + pizzaType + "] " + toppings + ", " + size.toString() + ", " + sauce.toString() + ", "
-                + ", " + exSauce + ", " + exCheese + " " + this.price();
+                + exSauce + ", " + exCheese + " " + NumberFormat.getCurrencyInstance().format(this.price());
     }
 }
 
@@ -194,14 +210,14 @@ class DeluxePizza extends Pizza{
      */
     public double price(){
         double base=PRICE_DELUXE;
-        if(this.extraSauce)
-            base+=EXTRA_SAUCE_FEE;
-        if(this.extraCheese)
-            base+=EXTRA_CHEESE_FEE;
-        if(this.size==Size.MEDIUM)
-            base+=PRICE_FOR_MEDIUM;
-        if(this.size==Size.LARGE)
-            base+=PRICE_FOR_LARGE;
+        if (this.extraSauce)
+            base += EXTRA_SAUCE_FEE;
+        if (this.extraCheese)
+            base += EXTRA_CHEESE_FEE;
+        if (this.size == Size.MEDIUM)
+            base += PRICE_FOR_MEDIUM;
+        if (this.size == Size.LARGE)
+            base += PRICE_FOR_LARGE;
         return base;
     }
 }
@@ -327,7 +343,7 @@ class PepperoniPizza extends Pizza {
      */
     public PepperoniPizza() {
         super();
-        pizzaType = "Pepperoni  ";
+        pizzaType = "Pepperoni";
         toppings.add(Topping.PEPPERONI);
     }
 

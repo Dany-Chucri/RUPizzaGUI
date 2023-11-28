@@ -13,11 +13,55 @@ import java.io.IOException;
  * @author Dany Chucri, Madhur Nutulapati
  */
 public class ControllerMainMenu {
-    protected StoreOrders storeOrders;
+    private StoreOrders storeOrders;
 
     @FXML
     private Button specialtyPizzas, customPizzas, shoppingCart, ordersList;
     private ControllerStoreOrders storeOrdersController;
+    private ControllerShoppingCart shoppingCartController;
+    private Stage cartStage;
+    private Stage ordersStage;
+
+    /**
+     * Initializes the controller by setting up the shopping cart and store orders.
+     */
+    public void initialize() {
+        ordersStage = new Stage();
+        AnchorPane root2;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreOrders.fxml"));
+            root2 = (AnchorPane) loader.load();
+            Scene scene = new Scene(root2, 700, 400);
+            ordersStage.setTitle("Store Orders");
+            ordersStage.setScene(scene);
+            storeOrdersController = loader.getController();
+            storeOrdersController.setMainController(this);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading StoreOrders.fxml.");
+            alert.setContentText("Couldn't load StoreOrders.fxml.");
+            alert.showAndWait();
+        }
+        cartStage = new Stage();
+        AnchorPane root1;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShoppingCart.fxml"));
+            root1 = (AnchorPane) loader.load();
+            Scene scene = new Scene(root1, 700, 400);
+            cartStage.setTitle("Checkout");
+            cartStage.setScene(scene);
+            shoppingCartController = loader.getController();
+            shoppingCartController.setMainController(this);
+            shoppingCartController.setStoreOrdersController(storeOrdersController);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading ShoppingCart.fxml.");
+            alert.setContentText("Couldn't load ShoppingCart.fxml.");
+            alert.showAndWait();
+        }
+    }
 
     /**
      * Opens the window for Specialty Pizzas.
@@ -35,6 +79,8 @@ public class ControllerMainMenu {
             specialties.show();
             ControllerSpecialtyPizzas controllerSpecialtyPizzas = loader.getController();
             controllerSpecialtyPizzas.setMainController(this);
+            controllerSpecialtyPizzas.setCartController(shoppingCartController);
+
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
@@ -60,6 +106,7 @@ public class ControllerMainMenu {
             pizzaBuilder.show();
             ControllerCustomPizzas controllerCustomPizzas = loader.getController();
             controllerCustomPizzas.setMainController(this);
+            controllerCustomPizzas.setCartController(shoppingCartController);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
@@ -74,24 +121,7 @@ public class ControllerMainMenu {
      */
     @FXML
     protected void openCart() {
-        Stage shoppingCart = new Stage();
-        AnchorPane root;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ShoppingCart.fxml"));
-            root = (AnchorPane) loader.load();
-            Scene scene = new Scene(root, 700, 400);
-            shoppingCart.setTitle("Checkout");
-            shoppingCart.setScene(scene);
-            shoppingCart.show();
-            ControllerShoppingCart controllerShoppingCart = loader.getController();
-            controllerShoppingCart.setMainController(this);
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Loading ShoppingCart.fxml.");
-            alert.setContentText("Couldn't load ShoppingCart.fxml.");
-            alert.showAndWait();
-        }
+        cartStage.show();
     }
 
     /**
@@ -99,29 +129,11 @@ public class ControllerMainMenu {
      */
     @FXML
     protected void openOrders() {
-        Stage storeOrders = new Stage();
-        AnchorPane root;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreOrders.fxml"));
-            root = (AnchorPane) loader.load();
-            Scene scene = new Scene(root, 700, 400);
-            storeOrders.setTitle("Store Orders");
-            storeOrders.setScene(scene);
-            storeOrders.show();
-            ControllerStoreOrders controllerStoreOrders = loader.getController();
-            controllerStoreOrders.setMainController(this);
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Loading StoreOrders.fxml.");
-            alert.setContentText("Couldn't load StoreOrders.fxml.");
-            alert.showAndWait();
-        }
+        ordersStage.show();
     }
 
     /**
      * Retrieves the store orders controller.
-     *
      * @return The ControllerStoreOrders instance.
      */
     public ControllerStoreOrders getStoreOrdersController() {
@@ -130,10 +142,25 @@ public class ControllerMainMenu {
 
     /**
      * Sets the store orders controller.
-     *
      * @param storeOrdersController The ControllerStoreOrders instance to set.
      */
     public void setStoreOrdersController(ControllerStoreOrders storeOrdersController) {
         this.storeOrdersController = storeOrdersController;
+    }
+
+    /**
+     * Retrieves the shopping cart controller.
+     * @return The ControllerShoppingCart instance.
+     */
+    public ControllerShoppingCart getShoppingCartController() {
+        return shoppingCartController;
+    }
+
+    /**
+     * Sets the shopping cart controller.
+     * @param shoppingCartController The ControllerShoppingCart instance to set.
+     */
+    public void setShoppingCartController(ControllerShoppingCart shoppingCartController) {
+        this.shoppingCartController = shoppingCartController;
     }
 }

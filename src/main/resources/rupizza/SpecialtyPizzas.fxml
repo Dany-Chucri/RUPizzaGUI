@@ -56,7 +56,7 @@
          </font>
       </Label>
       <TextField fx:id="totalPrice" editable="false" layoutX="73.0" layoutY="509.0" prefHeight="25.0" prefWidth="200.0" />
-      <Button fx:id="addToOrder" layoutX="306.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Add to Order" AnchorPane.rightAnchor="30.0" />
+      <Button fx:id="addToOrder" layoutX="306.0" layoutY="509.0" mnemonicParsing="false" onAction="#addPizza" prefHeight="25.0" prefWidth="171.0" text="Add to Order" AnchorPane.rightAnchor="30.0" />
       <RadioButton fx:id="small" layoutX="299.0" layoutY="114.0" mnemonicParsing="false" onAction="#selectSpecialty" text="small">
          <toggleGroup>
             <ToggleGroup fx:id="specialtySize" />

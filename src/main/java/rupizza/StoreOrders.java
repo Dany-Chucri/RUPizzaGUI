@@ -3,6 +3,7 @@ package rupizza;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -11,13 +12,14 @@ import java.util.List;
  * @author Dany Chucri, Madhur Nutulapati
  */
 public class StoreOrders {
-    private static int nextAvailableOrderNum = 1;
+    private int nextAvailableOrderNum;
     private List<Order> orders;
 
     /**
      * Constructs a new StoreOrders object with an empty list of orders.
      */
     public StoreOrders(){
+        nextAvailableOrderNum = 1;
         this.orders=new ArrayList<>();
     }
 
@@ -27,7 +29,7 @@ public class StoreOrders {
      * @return The next available order number.
      */
     public int getNextAvailableOrderNum(){//getter
-        return nextAvailableOrderNum++;
+        return nextAvailableOrderNum;
     }
 
     /**
@@ -58,6 +60,13 @@ public class StoreOrders {
     }
 
     /**
+     * Increments the nextAvailableOrderNum variable
+     */
+    public void nextOrder() {
+        this.nextAvailableOrderNum++;
+    }
+
+    /**
      * Exports the list of orders to an external text file.
      *
      * @param filePath The path to the file where the orders will be exported.
@@ -67,12 +76,11 @@ public class StoreOrders {
             for (Order order : orders) {
                 writer.write("Order number: " + order.getOrderNumber() + "\n");
                 for(Pizza pizza : order.getPizzas()){
-                    writer.write("Pizza type: " + pizza.getClass().getSimpleName()+"\n");
-                    //Anything else to add ?
+                    writer.write(pizza +"\n");
                 }
-                writer.write("Total: $"+order.calcTotalPrice()+ "/n/n");
+                writer.write("Total: " + NumberFormat.getCurrencyInstance().format(order.calcTotalPrice()) + "\n\n");
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error exporting saving the store orders to an external text file: " + e.getMessage());
         }
     }

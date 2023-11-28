@@ -19,6 +19,7 @@ public class ControllerSpecialtyPizzas {
     private ControllerMainMenu mainController;
     private ObservableList<String> specialtyList;
     private ObservableList<String> toppingsList;
+    private ControllerShoppingCart cartController;
 
     @FXML
     private ImageView specialtyImage;
@@ -64,6 +65,10 @@ public class ControllerSpecialtyPizzas {
      */
     public void setMainController (ControllerMainMenu controller){
         mainController = controller;
+    }
+
+    public void setCartController(ControllerShoppingCart controller) {
+        cartController = controller;
     }
 
     /**
@@ -121,5 +126,29 @@ public class ControllerSpecialtyPizzas {
     @FXML
     void selectSpecialty() {
         buildSpecialty();
+    }
+
+    private void handleAddErrors() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Cannot Add Pizza");
+        alert.setHeaderText("There was an error in adding this pizza.");
+        alert.setContentText("Please try again.");
+        alert.showAndWait();
+    }
+
+    @FXML
+    void addPizza() {
+        try {
+            Pizza pizza = buildSpecialty();
+            cartController.addPizza(pizza);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pizza Added");
+            alert.setHeaderText("The follow pizza has been added to your cart:");
+            alert.setContentText(pizza.toString());
+            alert.showAndWait();
+        } catch (Exception e) {
+            handleAddErrors();
+        }
     }
 }

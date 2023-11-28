@@ -16,11 +16,12 @@ import java.util.List;
 public class ControllerCustomPizzas {
 
     private ControllerMainMenu mainController;
+    private ControllerShoppingCart cartController;
     private ObservableList<String> sizeList;
     private ObservableList<String> additionalToppingsList;
     private ObservableList<String> selectedToppingsList;
 
-    protected Pizza pizza;
+    private Pizza pizza;
 
     @FXML
     private ComboBox<String> sizeChooser;
@@ -63,6 +64,10 @@ public class ControllerCustomPizzas {
      */
     public void setMainController (ControllerMainMenu controller){
         mainController = controller;
+    }
+
+    public void setCartController (ControllerShoppingCart controller) {
+        cartController = controller;
     }
 
     /**
@@ -162,5 +167,49 @@ public class ControllerCustomPizzas {
         totalPrice.clear();
         NumberFormat.getCurrencyInstance().format(pizza.price());
         totalPrice.appendText(NumberFormat.getCurrencyInstance().format(pizza.price()));
+    }
+
+    private int handleAddErrors() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Cannot Add Pizza");
+        if (sizeChooser.getSelectionModel().getSelectedItem() == null) {
+            alert.setHeaderText("You have not selected a size.");
+            alert.setContentText("Please select a size before adding your pizza.");
+            alert.showAndWait();
+            return -1;
+        }
+        if(!(tomatoSauce.isSelected() || alfredoSauce.isSelected())) {
+            alert.setHeaderText("You have not selected a sauce.");
+            alert.setContentText("Please select a sauce before adding your pizza.");
+            alert.showAndWait();
+            return -1;
+        }
+        if (pizza.toppings.size() < 3) {
+            alert.setHeaderText("You have not selected at least 3 toppings.");
+            alert.setContentText("Please select at least 3 toppings before adding your pizza.");
+            alert.showAndWait();
+            return -1;
+        }
+        return 0;
+    }
+
+
+    @FXML
+    void addPizza() {
+        try {
+            if (handleAddErrors() != 0) return;
+            Pizza newPizza = PizzaMaker.createPizza("buildyourown");
+            newPizza.copyPizza(pizza);
+            cartController.addPizza(newPizza);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pizza Added");
+            alert.setHeaderText("The follow pizza has been added to your cart:");
+            alert.setContentText(pizza.toString());
+            alert.showAndWait();
+        }
+        catch (Exception e) {
+            handleAddErrors();
+        }
     }
 }

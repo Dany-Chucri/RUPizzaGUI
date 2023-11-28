@@ -23,8 +23,8 @@
             </font>
         </Label>
         <TextField fx:id="orderTotal" editable="false" layoutX="112.0" layoutY="333.0" prefHeight="25.0" prefWidth="249.0" />
-        <Button fx:id="exportOrders" layoutX="453.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="207.0" text="Export Store Orders" />
-        <Button fx:id="cancelOrder" layoutX="453.0" layoutY="348.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="207.0" text="Cancel Order" />
-      <ComboBox fx:id="orderNumber" layoutX="132.0" layoutY="60.0" prefWidth="150.0" promptText="Select Order" />
+        <Button fx:id="exportOrders" layoutX="453.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleExportOrders" prefHeight="25.0" prefWidth="207.0" text="Export Store Orders" />
+        <Button fx:id="cancelOrder" layoutX="453.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleCancelOrder" prefHeight="25.0" prefWidth="207.0" text="Cancel Order" />
+      <ComboBox fx:id="orderNumber" layoutX="132.0" layoutY="60.0" onAction="#handleOrderNum" prefWidth="150.0" promptText="Select Order" />
     </children>
 </AnchorPane>
