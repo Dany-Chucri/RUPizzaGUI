@@ -1,4 +1,5 @@
 package rupizza;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +18,7 @@ class BuildYourOwnPizzaTest{
         BuildYourOwnPizza pizza = new BuildYourOwnPizza();
         pizza.setExtraSauce(true);
         pizza.setSize("large");
-        assertEquals(13.99,pizza.price(),0.01);
+        assertEquals(13.99, pizza.price(), 0.01);
     }
 
     /**

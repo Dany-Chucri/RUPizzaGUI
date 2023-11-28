@@ -169,6 +169,10 @@ public class ControllerCustomPizzas {
         totalPrice.appendText(NumberFormat.getCurrencyInstance().format(pizza.price()));
     }
 
+    /**
+     *
+     * @return
+     */
     private int handleAddErrors() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Cannot Add Pizza");
