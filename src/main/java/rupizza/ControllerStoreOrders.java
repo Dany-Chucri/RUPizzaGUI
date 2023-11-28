@@ -9,7 +9,11 @@ import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 
-
+/**
+ * The ControllerStoreOrders class controls the user interface for all the store's orders.
+ * It allows view or export all placed orders, as well as their price, and to remove an order.
+ * @author Dany Chucri, Madhur Nutulapati
+ */
 public class ControllerStoreOrders {
 
     private ControllerMainMenu mainController;
@@ -28,23 +32,37 @@ public class ControllerStoreOrders {
     @FXML
     private Button cancelOrder, exportOrders;
 
+    /**
+     * Initializes a controller by creating a StoreOrders object.
+     */
     public void initialize() {
         pizzaListArr = FXCollections.observableArrayList();
         orderNumbers = FXCollections.observableArrayList();
         storeOrders = new StoreOrders();
     }
 
-    //Get the reference to the MainController object
+    /**
+     * Sets a reference to the main menu controller.
+      * @param controller The main menu controller to reference
+     */
     public void setMainController (ControllerMainMenu controller){
         mainController = controller;
     }
 
+    /**
+     * Adds a given order from the shopping cart to the placed store orders.
+     * @param order The order to be placed.
+     */
     public void addCartOrder(Order order) {
         orderNumber.getItems().add("" + storeOrders.getNextAvailableOrderNum());
         storeOrders.addOrder(order);
         storeOrders.nextOrder();
     }
 
+    /**
+     * Cancels a selcted order.
+     * Performs its own error checking.
+     */
     @FXML
     private void handleCancelOrder() {
         try {
@@ -84,6 +102,10 @@ public class ControllerStoreOrders {
         }
     }
 
+    /**
+     * Exports the stores orders to a file.
+     * Creates a new file or rewrites a given file in the process.
+     */
     @FXML
     private void handleExportOrders() {
         FileChooser fileChooser = new FileChooser();
@@ -112,6 +134,9 @@ public class ControllerStoreOrders {
         }
     }
 
+    /**
+     * Updates the GUI to reflect a selected order number.
+     */
     @FXML
     private void handleOrderNum(){
         String selectedOrderNum = orderNumber.getValue();
@@ -128,6 +153,10 @@ public class ControllerStoreOrders {
         }
     }
 
+    /**
+     * Retrieves the StoreOrders object.
+     * @return A StoreOrders object.
+     */
     public StoreOrders getStoreOrders() {
         return storeOrders;
     }

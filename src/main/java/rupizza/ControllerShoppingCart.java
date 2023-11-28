@@ -6,10 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+/**
+ * The ControllerShoppingCart class controls the user interface for the current order cart.
+ * It allows view current pizzas being ordered, as well as their price, and to remove pizzas or place an order.
+ * @author Dany Chucri, Madhur Nutulapati
+ */
 public class ControllerShoppingCart {
     private ControllerMainMenu mainController;
     private ObservableList<Pizza> pizzaListArr;
@@ -25,37 +27,63 @@ public class ControllerShoppingCart {
     @FXML
     private Button removePizza, placeOrder;
 
+    /**
+     * Initializes the controller by creating an Order object.
+     */
     public void initialize() {
         pizzaListArr = FXCollections.observableArrayList();
         pizzaList.setItems(pizzaListArr);
         shoppingCart = new Order();
     }
 
-    //Get the reference to the MainController object
+    /**
+     * Sets the reference to the main controller.
+     *
+     * @param controller The main controller to be referenced.
+     */
     public void setMainController (ControllerMainMenu controller){
         mainController = controller;
     }
 
+    /**
+     * Sets a reference to the shopping cart.
+     * @param storeOrdersController the store ordedrs controller to be referenced.
+     */
     public void setStoreOrdersController(ControllerStoreOrders storeOrdersController) {
         this.storeOrdersController = storeOrdersController;
     }
 
+    /**
+     * Retrieves a shopping cart.
+     * @return Order object representing the shopping cart
+     */
     public Order getShoppingCart() {
         return shoppingCart;
     }
 
+    /**
+     * Adds a pizza to the current order.
+     * @param pizza The pizza be added.
+     */
     public void addPizza(Pizza pizza) {
         shoppingCart.addPizza(pizza);
         pizzaList.getItems().add(pizza);
         updatePrices();
     }
 
+    /**
+     * Adds a pizza to the current order.
+     * @param pizza The pizza be removed.
+     */
     public void removePizza(Pizza pizza) {
         shoppingCart.removePizza(pizza);
         pizzaList.getItems().remove(pizza);
         updatePrices();
     }
 
+    /**
+     * Updates the prices in the shopping cart.
+     */
     public void updatePrices() {
         double total = 0;
         for (Pizza pizza : shoppingCart.getPizzas()){
@@ -72,6 +100,9 @@ public class ControllerShoppingCart {
         orderTotal.setText(NumberFormat.getCurrencyInstance().format(totalPrice));
     }
 
+    /**
+     * Removes a pizza from the shopping cart.
+     */
     @FXML
     private void handleRemovePizza() {
         try {
@@ -88,6 +119,9 @@ public class ControllerShoppingCart {
 
     }
 
+    /**
+     * Places an order based on the info in the shopping cart.
+     */
     @FXML
     private void handlePlaceOrder() {
         try {
@@ -114,16 +148,9 @@ public class ControllerShoppingCart {
         }
     }
 
-    private List<Pizza> getPizzasInOrder() {
-        List<String> pizzaTypes = Arrays.asList("Deluxe", "Supreme", "Pepperoni", "BuildYourOwn", "Meatzza", "Seafood");
-        List<Pizza> pizzaListArr = new ArrayList<>();
-        for (String pizzaType : pizzaTypes) {
-            Pizza pizza = PizzaMaker.createPizza(pizzaType);
-            pizzaListArr.add(pizza);
-        }
-        return pizzaListArr;
-    }
-
+    /**
+     * Clears the shopping cart of all pizzas
+     */
     private void clearCart(){
         for (Pizza pizza : shoppingCart.getPizzas()) {
             shoppingCart.removePizza(pizza);

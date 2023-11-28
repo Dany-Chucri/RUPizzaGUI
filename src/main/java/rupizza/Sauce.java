@@ -1,4 +1,5 @@
 package rupizza;
+
 /**
  * The Sauce enum represents different types of pizza sauces.
  * @author Dany Chucri, Madhur Nutulapati

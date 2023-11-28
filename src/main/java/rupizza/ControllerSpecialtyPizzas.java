@@ -67,6 +67,10 @@ public class ControllerSpecialtyPizzas {
         mainController = controller;
     }
 
+    /**
+     * Sets a reference to the shopping cart.
+     * @param controller the shopping cart controller to be referenced.
+     */
     public void setCartController(ControllerShoppingCart controller) {
         cartController = controller;
     }
@@ -128,6 +132,9 @@ public class ControllerSpecialtyPizzas {
         buildSpecialty();
     }
 
+    /**
+     * Error handler for custom pizza builder
+     */
     private void handleAddErrors() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Cannot Add Pizza");
@@ -136,6 +143,9 @@ public class ControllerSpecialtyPizzas {
         alert.showAndWait();
     }
 
+    /**
+     * Adds a pizza to the shopping cart.
+     */
     @FXML
     void addPizza() {
         try {
